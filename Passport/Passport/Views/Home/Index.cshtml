@@ -1,0 +1,75 @@
+﻿<div class="container-fluid" ng-controller="UserController">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-content nopadding">
+                    <form action="#" method="get" class="form-horizontal">
+                        <div class="control-group" style="text-align: left !important">
+                            <div class="form-actions">
+                                <div>
+                                    <input type="text" name="q-param" id="q-param" placeholder="输入关键字查询" />
+                                    <input type="button" id="btn-search" class="btn-search" value="查询" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-actions">
+                                <a href="#" class="btn btn-primary u-new">添加新员工</a>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-actions">
+                                <a href="/Basic/File/Import/?type=userinfo" class="btn btn-primary">导入人员信息</a>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-actions">
+                                <a href="#" id="a_export" class="btn btn-primary">导出人员信息</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title" style="text-align: center;">
+                    <h4>人员信息</h4>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered  table-hover" data-click-to-select="true">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><input type="checkbox" /></th>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>证件号</th>
+                                <th>是否在职</th>
+                                <th>职位</th>
+                                <th>公司名称</th>
+                                <th>公司代码</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="td_users"></tbody>
+                    </table>
+                </div>
+                <div id="Pagination" class="pagination"><!-- 这里显示分页 --></div>
+                <div class="widget-content">
+                    <a name="btn-create" href="#" class="btn btn-success  u-new" href="Create">创建</a>
+                    <a name="btn-delete-all" ng-click="delcheck()" class="btn btn-danger">批量删除</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div id="footer" class="span12">
+            2015 &copy; HRMS.
+        </div>
+    </div>
+</div>

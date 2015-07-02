@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <title>登录</title>
+    <!-- 基础css begin -->
+    <link type="text/css" rel="stylesheet" href="http://res.fpowerglobal.com/static/pkg/core.css">
+    <!-- 基础css end -->
+    <!-- 组件依赖css begin -->
+    <!--<link href="../global/gmu/assets/transitions.css" rel="stylesheet" />-->
+    <!-- 组件依赖css end -->
+    <!-- 公用css begin -->
+    <link type="text/css" rel="stylesheet" href="http://res.fpowerglobal.com/static/pkg/combine.css">
+    <!-- 公用css end -->
+    <!-- 页面css begin -->
+    <style>
+        #logo-big {
+            background: url(@ViewBag.Logo) no-repeat scroll center top / auto 90%;
+            height: 150px;
+            margin: 10px 0;
+        }
+    </style>
+
+    <!-- 页面css begin -->
+</head>
+<body id="login">
+    <div id="wrapper">
+        <div id="content">
+            <div id="logo-big"></div>
+            <section class="padding-20 margin-bottom-0">
+                <section class="margin-bottom-20">
+                    <input id="UserName" name="UserName" type="text" class="text-box-full input-icon input-icon-user" placeholder="请输入身份证" />
+                </section>
+                <section class="margin-bottom-40">
+                    <input id="Password" name="Password" type="password" class="text-box-full input-icon input-icon-lock" placeholder="请输入SABA账号" />
+                </section>
+                <section class="margin-bottom-40">
+                    <button id="btnSubmit" type="button" class="default-button width-full">登 录</button>
+                </section>
+                <section class="margin-bottom-0">
+                    <p class="desc margin-bottom-0">
+                        首次使用微信平台初始密码为SABA账号，当与您的微信号成功绑定后，下次使用时无需再次登录。
+                    </p>
+                </section>
+            </section>
+        </div>
+    </div>
+    <div id="modal" class="modal-wrapper" style="height: 238px; display: none;">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="text-align-center">
+                    <div class="margin-bottom-10 font-size-22">登录成功</div>
+                    <div class="margin-bottom-10 margin-bottom-40">请完善个人信息 !</div>
+                    <a href="profile.html" class="default-button" style="padding: 0.5em 2em;">确 定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input id="CallBackUrl" type="hidden" />
+    <input id="Sign" type="hidden" />
+    <input id="OpenId" type="hidden" />
+    <input id="ProjectCode" type="hidden" />
+    <input id="Avatar" type="hidden" />
+    <!-- 组件依赖js begin -->
+    <script type="text/javascript" charset="utf-8" src="http://res.fpowerglobal.com/static/pkg/core.js"></script>
+    <!--<script src="../global/gmu/src/extend/touch.js"></script>-->
+    <!-- 组件依赖js end -->
+    <!-- 公用js begin -->
+    <script type="text/javascript" charset="utf-8" src="http://res.fpowerglobal.com/static/Benz/js/script.js"></script>
+    <!-- 公用js begin -->
+
+    <script type="text/javascript">
+        function getQueryStringByName(name) {
+            var result = location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+            if (result == null || result.length < 1) {
+                return "";
+            }
+            return result[1];
+        }
+    </script>
+    <script type="text/javascript">
+        Zepto(function ($) {
+
+
+
+            $(".default-button").button();
+            $("#btnSubmit").click(function () {
+                //数据验证
+                var pwd = $('#Password').val();
+                var name = $('#UserName').val();
+                if (name == "" || pwd == "") {
+                    utility.message({
+                        content: "请填写完毕后再进行登录！"
+                    });
+                }
+                var data = {
+                    account: name,
+                    password: pwd,
+                };
+                //记录原有button样式
+                var color;
+                $.ajax({
+                    url: '@Url.Action("Login")',
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        color = $("#btnSubmit").css('background-color');
+                        $("#btnSubmit").text('登录中...').attr({ disabled: "disabled" }).css('background-color', 'grey');
+                    }, success: function (xhr) {
+                        if (xhr == null) {
+                            utility.message({
+                                content: "登录失败，未知错误！"
+                            });
+                            return;
+                        }
+                        if (xhr.IsError) {
+                            utility.message({ content: xhr.Message, millisecond: 5000 });
+                        } else {
+                            utility.message({
+                                content: xhr.Message,
+                                closed: function () {
+                                    if (xhr.Url !== "" && xhr.Url !== null)
+                                        location.href = xhr.Url;
+                                }
+                            });
+                        }
+                    }, complete: function () {
+                        $("#btnSubmit").text('登 录').removeAttr("disabled").css('background-color', color);
+                    }
+                });
+            });
+        })
+    </script>
+</body>
+</html>

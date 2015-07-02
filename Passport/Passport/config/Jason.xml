@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<APIROOT>
+  <API Name="UserLogin" Type="SQL">
+    <SQL>
+      <![CDATA[SELECT [Id]
+      ,[Uid]
+      ,[Account]
+      ,[Password]
+      ,[Name]
+      ,[Avatar]
+      ,[ProjectCode]
+      ,[IPAddress]
+      ,[FlagValue]
+      ,[Attr1]
+      ,[Attr2]
+      ,[Attr3]
+      ,[Attr4]
+      ,[Attr5]
+      ,[Attr6]
+      ,[Attr7]
+      ,[Attr8]
+      ,[Attr9]
+      ,[Attr10]
+      ,[CreateTime]
+      ,[UpdateTime] FROM T_Users WHERE [Account]=[@Account] and ProjectCode=[@ProjectCode] ]]>
+    </SQL>
+    <Fields>
+      [Id]
+      ,[Uid]
+      ,[Account]
+      ,[Password]
+      ,[Name]
+      ,[Avatar]
+      ,[ProjectCode]
+      ,[IPAddress]
+      ,[FlagValue]
+      ,[Attr1]
+      ,[Attr2]
+      ,[Attr3]
+      ,[Attr4]
+      ,[Attr5]
+      ,[Attr6]
+      ,[Attr7]
+      ,[Attr8]
+      ,[Attr9]
+      ,[Attr10]
+      ,[CreateTime]
+      ,[UpdateTime]
+    </Fields>
+    <CONN>SSO</CONN>
+  </API>
+
+  <API Name="UpdateAvatar" Type="SQL">
+    <SQL>
+      <![CDATA[if exists (select 1 from [dbo].[T_Users] where [Id]=[@Id] and [Avatar] is null)UPDATE  T_Users SET Avatar=[@Avatar] WHERE Id=[@Id]]]>
+    </SQL>
+    <CONN>SSO</CONN>
+  </API>
+  <API Name ="GetProject" Type="SQL">
+    <SQL>
+      <![CDATA[SELECT  [Id]
+      ,[ProjectCode]
+      ,[ProjectName]
+      ,[AppKey]
+      ,[AppSecret]
+      ,[Avatar]
+      ,[Attr1]
+      ,[Attr2]
+      ,[Attr3]
+      ,[Attr4]
+      ,[Attr5]
+      ,[Attr6]
+      ,[CreateTime]
+      ,[UpdateTime]
+  FROM [SSO].[dbo].[T_Project] WHERE ProjectCode=[@ProjectCode]]]>
+    </SQL>
+    <Fields>
+      [Id]
+      ,[ProjectCode]
+      ,[ProjectName]
+      ,[AppKey]
+      ,[AppSecret]
+      ,[Avatar]
+      ,[Attr1]
+      ,[Attr2]
+      ,[Attr3]
+      ,[Attr4]
+      ,[Attr5]
+      ,[Attr6]
+      ,[CreateTime]
+      ,[UpdateTime]
+    </Fields>
+    <CONN>SSO</CONN>
+  </API>
+</APIROOT>

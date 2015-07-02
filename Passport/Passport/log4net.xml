@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<log4net>
+  <logger name="logSample">
+    <level value="ALL"/>
+    <appender-ref ref="samplelog"/>
+  </logger>
+  <appender name="samplelog" type="log4net.Appender.RollingFileAppender,log4net">
+    <param name="File" value="Logs\\log.log"/>
+    <param name="MaximumFileSize" value="2MB"/>
+    <param name="CountDirection" value="1"/>
+    <param name="MaxSizeRollBackups" value="50"/>
+    <lockingModel type="log4net.Appender.FileAppender+MinimalLock" /> 
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <param name="ConversionPattern" value="%d [%t] %-5p [%-c] - %m%n"/>
+    </layout>
+  </appender>
+  <root>
+    <priority value="ALL"/>
+    <appender-ref ref="File"/>
+  </root>
+</log4net>

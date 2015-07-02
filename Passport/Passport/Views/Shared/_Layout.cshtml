@@ -1,0 +1,297 @@
+﻿
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" ng-app="App">
+<head>
+    <title>HRMS</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/unicorn.grey.css" class="skin-color" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/colorpicker.css" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/datepicker.css" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/uniform.css" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/select2.css" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/unicorn.main.css" />
+    <link rel="stylesheet" href="http://res.cjatech.com/theme/WEBTHEME/css/unicorn.grey.css" class="skin-color" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        .Companys {
+            width: 375px;
+            position: absolute;
+        }
+
+        .materiasl {
+            width: 369px;
+        }
+
+        .form-actions {
+            padding-left: 20px !important;
+        }
+
+     
+
+        .pagination a {
+            text-decoration: none;
+            border: 1px solid #AAE;
+            color: #15B;
+        }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 0.1em 0.4em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .pagination .current {
+            background: #26B;
+            color: #fff;
+            border: 1px solid #AAE;
+        }
+
+            .pagination .current.prev, .pagination .current.next {
+                color: #999;
+                border-color: #999;
+                background: #fff;
+            }
+    </style>
+
+</head>
+<body>
+
+
+    <div id="header">
+        <h1><a href="./dashboard.html">HRMS</a></h1>
+    </div>
+    <div id="sidebar">
+        <a href="#" class="visible-phone"><i class="icon icon-th-list"></i> 进客信息管理</a>
+        <ul>
+            <li><a href="index.html"><i class="icon icon-home"></i> <span>首页</span></a></li>
+            <li class="submenu">
+                <a href="#"><i class="icon icon-th-list"></i> <span>客户管理</span> <span class="label">2</span></a>
+                <ul>
+                    <li><a href="form-enter.html">进客信息管理</a></li>
+                    <li><a href="form-service.html">客户跟踪管理</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#"><i class="icon icon-th-list"></i> <span>KPI</span> <span class="label">3</span></a>
+                <ul>
+                    <li><a href="">展厅混合客流量</a></li>
+                    <li><a href="">展厅到店流量</a></li>
+                    <li><a href="">电话来访流量</a></li>
+                </ul>
+            </li>
+            <li class="submenu active open">
+                <a href="#"><i class="icon icon-th-list"></i> <span>系统管理</span> <span class="label">4</span></a>
+                <ul>
+                    <li class="active"><a href="/Basic/User/Index">人员管理</a></li>
+                    <li><a href="form-department.html">部门管理</a></li>
+                    <li><a href="../../Htmls/Permission/form-permission.html">权限管理</a></li>
+                    <li><a href="../../Htmls/Roles/HttpRole.html">角色管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="breadcrumb" ua-repeat="menus">
+            <a href="{{URL}}" class="{{ClassName}}">{{MenuName}}</a>
+        </div>
+        @RenderBody()
+        
+    </div>
+
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/jquery.min.js"></script>
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/jquery.ui.custom.js"></script>
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/bootstrap.min.js"></script>
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/jquery.uniform.js"></script>
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/select2.min.js"></script>
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/jquery.dataTables.min.js"></script>
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/unicorn.js"></script>
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/unicorn.tables.js"></script>
+    <script src="http://res.cjatech.com/theme/WEBTHEME/js/unicorn.form_common.js"></script>
+    <script src="http://res.cjatech.com/theme/Scripts/angular-1.2.19/angular.min.js"></script>
+    <script src="http://res.cjatech.com/theme/Scripts/angular-1.2.19/angular-resource.min.js"></script>
+    <script src="http://res.cjatech.com/theme/Scripts/js/ngStart.js"></script>
+    <script src="http://res.cjatech.com/theme/Scripts/layer/layer.min.js"></script>
+    <script src="/Scripts/jquery.pagination.js"></script>
+
+    <script type="text/javascript">
+        var target = "";
+        var first = "";
+        var pager =
+        {
+            pageSize: 10,
+            pageIndex: 0,
+
+
+        }
+        //first
+        $(first).click(function () {
+
+        });
+    </script>
+    <script>
+        (function ($) {
+            $().ready(function () {
+                var first = 0;
+                var needPagging = true;
+                var pageInit = function (page, size, param) {
+                    //加载数据
+                    var index = 0;
+                    $.ajax({
+                        url: '/api/common?API=UserInfoList',
+                        data: {
+                            page: page,
+                            pagesize: size,
+                            param: param
+                        },
+                        beforeSend: function (xhr) {
+                            index = layer.load('正在处理...');
+                        },
+                        success: function (xhr) {
+                            layer.close(index);
+                            var trs = '';
+                            $.each(xhr.ApiParamObj[0], function (i, item) {
+                                trs += ''
+                                    + '  <tr>                                                                                                       '
+                                    + '     <td style="text-align: center"><input name="userId" type="checkbox" value="' + item.ID + '" /></td>                                '
+                                    + '     <td>' + item.Account + '</td>                                                                                                      '
+                                    + '     <td>' + item.Name + '</td>                                                                                                         '
+                                    + '     <td>' + item.CardNO + '</td>                                                                                                       '
+                                    + '     <td>' + (item.IsOnJob ? "在职" : "离职") + '</td>                                                                                                      '
+                                    + '     <td>' + item.OfficerName + '</td>                                                                                                  '
+                                    + '     <td>' + item.CompanyName + '</td>                                                                                                  '
+                                    + '     <td>' + item.CompanyCode + '</td>                                                                                                  '
+                                    + '     <td>                                                                                                                      '
+                                    + '         <a op-resetpwd dt-id="' + item.ID + '" dt-name="' + item.Name + '"  href="#" data-toggle="modal" class="btn btn-warning btn-lg">重置密码</a>  '
+                                    + '         <a href="/Basic/User/Edit/?id=' + item.ID + '&name=' + item.Name + '" class="btn btn-info">编辑</a>                                     '
+                                    + '         <a op-del class="btn btn-danger" dt-id="' + item.ID + '" dt-name="' + item.Name + '" href="#">删除</a>                                       '
+                                    + '     </td>                                                                                                                     '
+                                    + ' </tr>';
+
+                            });
+                            $('#td_users').empty().append(trs);
+                            if (first == 0) {
+                                //总数目
+                                var length = xhr.ApiParamObj[1][0].total;
+                                $("#Pagination").pagination(length, {
+                                    num_edge_entries: 2,
+                                    num_display_entries: 4,
+                                    callback: pageselectCallback,
+                                    items_per_page: 1
+                                });
+
+                                //从表单获取分页元素参数
+                                var optInit = getOptionsFromForm();
+                                $("#Pagination").pagination(length, optInit);
+
+
+
+                                //-----------------------------------
+                                function getOptionsFromForm() {
+                                    var opt = { callback: pageselectCallback, prev_text: "上一页", next_text: "下一页" };
+
+                                    opt.num_edge_entries = 2;
+                                    opt.num_display_entries = 5;
+                                    opt.items_per_page = 10;
+                                    return opt;
+                                }
+
+                                //-------------------------------
+                                function pageselectCallback(page_index, jq) {
+                                    //自动加载取消
+                                    if (first > 1) {
+                                        pageInit(page_index + 1, 10, $('#q-param').val());
+                                    }
+                                    first++;
+                                    //阻止单击事件
+                                    return false;
+                                }
+                            }
+                        }, complete: function () {
+                            layer.close(index);
+                        }
+                    });
+                };
+                pageInit(1, 10, '');
+
+                $('#btn-search').click(function () {
+                    first = 0;
+                    needPagging = false;
+                    pageInit(1, 10, $('#q-param').val());
+                    // needPagging = true;
+                });
+                $('#a_export').attr("href", "/Basic/User/ExportUser" + location.search);
+
+                $('.u-new').click(function () {
+                    location.href = "/Basic/User/Add" + location.search;
+                });
+
+                $('#td_users [op-resetpwd]').live('click', function () {
+                    var id = $(this).attr('dt-id');
+                    layer.confirm("您确定要将 【" + $(this).attr('dt-name') + "】 的密码重置为 123456 吗？", function () {
+                        $.post("/Basic/User/ResetPwd/" + id, function (xhr) {
+                            if (xhr.Success) {
+                                layer.msg("重置成功", 1, 1, function () {
+                                    location.href = "/Basic/User/Index";
+                                });
+                            } else {
+                                layer.alert("操作失败：" + xhr.Message);
+                            }
+                        });
+                    });
+                });
+
+                $('[name="btn-delete-all"]').live('click', function () {
+                    var index = layer.confirm("您确定要删除所选人员吗？", function () {
+                        var ids = [];
+                        $("input[name='userId']").each(function () {
+                            if (this.checked)
+                                ids.push(this.value);
+                        });
+                        if (ids.length == 0) {
+                            layer.msg("没有选择任何记录！");
+                            layer.close(index);
+                            return;
+                        }
+                        $.post("/Basic/User/Dels", { ids: ids }, function (xhr) {
+                            if (xhr.Success) {
+                                layer.msg("删除成功", 1, 1, function () {
+                                    location.href = "/Basic/User/Index";
+                                });
+                            } else {
+                                layer.alert("操作失败：" + xhr.Message);
+                            }
+                        });
+                        layer.close(index);
+                    }, function () {
+                        layer.close(index);
+                    });
+                });
+
+                $('#td_users [op-del]').live('click', function () {
+                    var id = $(this).attr('dt-id');
+                    layer.confirm("您确定要将 【" + $(this).attr('dt-name') + "】 删除吗？", function () {
+                        var ids = [];
+                        ids.push(id);
+                        $.post("/Basic/User/Dels", { ids: ids }, function (xhr) {
+                            if (xhr.Success) {
+                                layer.msg("删除成功", 1, 1, function () {
+                                    location.href = "/Basic/User/Index";
+                                });
+                            } else {
+                                layer.alert("操作失败：" + xhr.Message);
+                            }
+                        });
+                    });
+                });
+            });
+        })(jQuery);
+    </script>
+
+
+</body>
+</html>
